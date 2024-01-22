@@ -43,11 +43,9 @@ Achieving these objectives will contribute to a more targeted and efficient mark
 
 ## <span style="font-size:larger;">Engineering Features</span>
 
-Bank Client Summary
+- Age, with its moderate dispersion, does not yield significant insights when related to other variables.
 
-Age, with its moderate dispersion, does not yield significant insights when related to other variables.
-
-For Jobs, Marital, and Education, a straightforward analysis based on the count of each variable might be the most informative. However, when related to other variables, the results are inconclusive. It's worth noting that these variables exhibit 'yes,' 'unknown,' and 'no' values for loan, default, and housing.
+- For Jobs, Marital, and Education, a straightforward analysis based on the count of each variable might be the most informative. However, when related to other variables, the results are inconclusive. It's worth noting that these variables exhibit 'yes,' 'unknown,' and 'no' values for loan, default, and housing.
 
 To construct a socio-economic group of variables, we can create a composite variable termed 'bank_se.'
 

@@ -12,9 +12,9 @@ What's included:  This README, Jupyter notebook, and original data files.
 
 ## <span style="font-size:larger;">Understanding the Data</span>
 
-Dataset references the UCI Machine Learning repository:  https://archive.ics.uci.edu/ml/datasets/bank+marketing
+- Dataset references the UCI Machine Learning repository:  https://archive.ics.uci.edu/ml/datasets/bank+marketing
 
-The data is from a Portuguese banking institution and is a collection of the results of multiple marketing campaigns. The dataset collected is related to 17 campaigns that occurred between May 2008 and November 2010. Each campaign involved phone marketing with a human agent as the interlocutor, and sometimes an auxiliary use of the Internet online banking channel. The results for all channels were managed in an integrated fashion and outputted together.
+- The data is from a Portuguese banking institution and is a collection of the results of multiple marketing campaigns. The dataset collected is related to 17 campaigns that occurred between May 2008 and November 2010. Each campaign involved phone marketing with a human agent as the interlocutor, and sometimes an auxiliary use of the Internet online banking channel. The results for all channels were managed in an integrated fashion and outputted together.
 
 ## <span style="font-size:larger;">Read in the Data</span>
 
@@ -27,9 +27,10 @@ Numerical data represents information in numerical form rather than in language 
 Categorical data is characterized by names or labels. Examples of categorical columns in our dataset are job, marital, education, default, housing, loan, poutcome, contact, month, day_of_week, and y.
 
 ## <span style="font-size:larger;">Understanding the Features</span>
-Utilizing the describe function provides a comprehensive understanding of the dataset. It allows us to grasp the range, means, standard deviations, maximum and minimum values, as well as percentiles of the data. This comprehensive overview enhances our ability to interpret and analyze the dataset effectively.
 
-Upon closer inspection, it becomes evident that the data ranges across columns exhibit significant variations. For instance, the mean of nr.employed is 5167.035911, while the mean of emp.var.rate is 0.081886. Such disparities in scales highlight the need for normalization to improve the overall quality of our data.
+- Utilizing the describe function provides a comprehensive understanding of the dataset. It allows us to grasp the range, means, standard deviations, maximum and minimum values, as well as percentiles of the data. This comprehensive overview enhances our ability to interpret and analyze the dataset effectively.
+
+- Upon closer inspection, it becomes evident that the data ranges across columns exhibit significant variations. For instance, the mean of nr.employed is 5167.035911, while the mean of emp.var.rate is 0.081886. Such disparities in scales highlight the need for normalization to improve the overall quality of our data.
 
 ## <span style="font-size:larger;">Understanding the Task</span>
 
@@ -47,7 +48,7 @@ Achieving these objectives will contribute to a more targeted and efficient mark
 
 - For Jobs, Marital, and Education, a straightforward analysis based on the count of each variable might be the most informative. However, when related to other variables, the results are inconclusive. It's worth noting that these variables exhibit 'yes,' 'unknown,' and 'no' values for loan, default, and housing.
 
-To construct a socio-economic group of variables, we can create a composite variable termed 'bank_se.'
+- To construct a socio-economic group of variables, we can create a composite variable termed 'bank_se.'
 
 ## <span style="font-size:larger;">A Baseline Model</span>
 
@@ -68,7 +69,7 @@ The classifier of choice for this task is K-Nearest Neighbors (KNN).
 
 ## <span style="font-size:larger;">Additional Models</span>
 
-In addition to KNN baseline model, I also deployed the following models for comparison:
+In addition to the KNN baseline model, I also deployed the following models for comparison:
 - Support Vector Model
 - Decision Tree Model
 - Logistc Regression Model

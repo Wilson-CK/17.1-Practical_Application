@@ -14,7 +14,7 @@ What's included:  This README, Jupyter notebook, and original data files.
 
 Dataset references the UCI Machine Learning repository:  https://archive.ics.uci.edu/ml/datasets/bank+marketing
 
-The data is from a Portuguese banking institution and is a collection of the results of multiple marketing campaigns. The dataset collected is related to 17 campaigns that occurred between May 2008 and November 2010. Each campaign involved phone marketing with a human agent as the interlocutor, and sometimes an auxiliary use of the Internet online banking channel. The results for all channels were managed in an integrated fashion and outputted together.¶
+The data is from a Portuguese banking institution and is a collection of the results of multiple marketing campaigns. The dataset collected is related to 17 campaigns that occurred between May 2008 and November 2010. Each campaign involved phone marketing with a human agent as the interlocutor, and sometimes an auxiliary use of the Internet online banking channel. The results for all channels were managed in an integrated fashion and outputted together.
 
 ## <span style="font-size:larger;">Read in the Data</span>
 
@@ -54,7 +54,7 @@ To construct a socio-economic group of variables, we can create a composite vari
 ## <span style="font-size:larger;">A Baseline Model</span>
 
 To outperform the baseline, our classifier should exhibit the following qualities:
-- High training accuracy to effectively learn from the training data.¶
+- High training accuracy to effectively learn from the training data.
 - Low false positive value, indicating a minimized rate of incorrectly predicted positive instances.
 - High test accuracy, demonstrating robust performance on unseen data.
 
@@ -89,74 +89,42 @@ The traditional academic point system for classifying accuracy is as follows:
 This guide provides a rough classification based on the AUC value, helping to interpret the diagnostic test's accuracy.
 
 
+![Model_Scores](https://github.com/Wilson-CK/17.1-Practical_Application/assets/146282056/26858ae0-6669-4c5a-a7da-dfd13c458aba)
+
+## <span style="font-size:larger;">Model Comparisons</span> 
+
+![FP_Comparisons](https://github.com/Wilson-CK/17.1-Practical_Application/assets/146282056/656f43df-2330-4ece-a849-613c152735cb)
 
 
+In evaluating the models, we consider two types of incorrect predictions:
 
-
-
-
-
-
-
-
-
-
-**Executive summary**
-
-This report unveils the outcomes of our examination into the pricing dynamics of pre-owned cars. Our aim was to pinpoint the critical factors that impact these prices and offer suggestions to enhance the management of dealership inventory.
-
-**Methodology**
-
-Performed data mining analysis against the dataset of ~426K vehicles, leveraging various methods from the cleansing and transformation of data to the generation and assessment of regression models and subsequent validation to ensure the selected model is a high-performing one with reliable result.
-
-**Key Findings**
-
-Relevant Factors: Identified several factors significantly correlated with used car prices, including the car's year, brand, transmission type, body type, and fuel type.
-
-  1.	The features that positively affect price increase the most are:
+- False Positives: The model predicts a client subscribed to a term deposit when they did not.
+- False Negatives: The model predicts a client did not subscribe when they actually did.
   
-  - The year and odometer of the vehicle: generally, the newer and few miles it possesses, the more expensive it is
-  
-  - Vehicles with 8, 10, and 12 cyclinders tend to cost more; however, there appears to be lower sales volume than their 6-cyclinder and smaller counterparts
-  
-  - Diesel fuel and electric vehicles tend to have higher prices
-  
-  - Pickups and trucks carry higher sticker prices
-  
-  - Clean and lien-titled vehicles tend to be priced higher than the rebuilt, salvage, missing, and parts-only counterparts
+In my assessment:
 
-  2.	Missing data: A notable amount (~15%) of missing data exists in the provided dataset.
+- False Positives are more detrimental because we may erroneously believe we have the client, potentially resulting in missed opportunities in future campaigns.
+- False Negatives, while not ideal, mean we still have the client, and any oversight can be rectified in the future.
+Therefore, our objective is to identify the best model based on the confusion matrix with the lowest possible False Positives. Upon examination, the Decision Tree Model stands out with the lowest False Positive count, totaling 433.
 
-  3.	There's an interesting dependency of the average car price based on the state of origin, which in turn depends on the brand. A clear example is Washington and Utah states, where the average sale prices tend to be higher than those from other states.
+![Model_Comparisons](https://github.com/Wilson-CK/17.1-Practical_Application/assets/146282056/ed429321-6794-477c-aa96-a925378c1881)
 
-  4.	A critical missing piece is the operating cost and profit margin per each vehicle. While our dataset illustrates the used car prices, a dealer theoretically can make profit at every pricepoint. Furthermore, I couldn't ascertain the supply and demand landscape, e.g. were prices sold above or below asking price, did some cars sit on the lot for an extended period before they were sold, etc..
+While there's no "perfect" model here, **Logistic Regression** stands out as the optimal choice, demonstrating the best combination of Train and Test Accuracy. It does require more training time than other models, however, in a robust system, it should not have a significant impact to overall efficiency and effectiveness for predictions.
 
-**Recommendations [Assumption: if charging more money for the vehicle price by the dealer is the goal]**
+## <span style="font-size:larger;">Improving the Model</span> 
 
-  1.	Inventory Optimization: Using the predictive model, dealerships can more accurately gauge how much they can charge for cars in their inventory
+- With tuning using SMOTE method, we are able to increase accuracy from just using max depth of 8 previously to now 6 with DecisionTreeClassifier.
 
-  2.	Focus on Key Features: Special attention is advised for features with higher influence on prices, such as car year, odometer reading, number of cyclinders, fuel type, and manufacturer brand
+- Bagging with Decision Tree has the best performance according to recall and ROC. The ideal number of neighbors was initially determined to be 24, resulting in an accuracy of 90.5%. Through further experimentation, accuracy has now improved to 93% by reducing the number of neighbors to 8, all achieved without additional feature engineering.
 
-  3.	Ongoing Monitoring: As new data becomes available, periodic updates and refinements of the model are recommended to maintain accuracy and relevance
+## <span style="font-size:larger;">Executive Summary & Recommendations</span> 
 
-  4.	Additional inputs from dealers: To increase the relevance and impact of the recommendation, dealers should incorporate operating and profit margin data, plus supply and demand landscape of the vehicles
+Interpreting the results and leveraging insights from exploratory data analysis, the bank can strategically focus on key features to attract more customers to buy term deposits:
 
-**Conclusion**
+1) **Duration Significance:** The duration of customer engagement has a substantial impact on the deposit outcome. Longer interactions correlate with a higher probability of customers making a deposit. Focusing on strategies to enhance customer engagement during interactions can positively influence deposit outcomes.
+2) **Economic Climate Influence:** The state of the country's economy emerges as a pivotal factor. During periods of economic prosperity, customers tend to be more willing to make deposits. Targeting campaigns during these favorable economic periods can maximize effectiveness.
+3) **Month-Specific Campaign Strategy:** October, characterized by heightened economic fluctuations, emerges as a challenging month. Consideration should be given to avoiding campaigns during this period to mitigate potential negative impacts.
+4) **Occupational Influence:** Individuals in blue-collar jobs, administrative roles, and technical positions exhibit higher probabilities of making a deposit. Tailoring campaigns to resonate with these occupational groups can yield more favorable outcomes.
+5) **Education Level Impact:** Customers with a solid educational background, particularly those with a university degree or higher, show a higher likelihood of making a deposit. Recognizing the influence of education on financial behavior can guide targeted strategies for customer segments.
 
-The insights derived from this analysis offer valuable guidance to used car dealerships seeking to streamline operations and improve decision-making in the realm of inventory management.
-
-**Next Steps**
-
-Model Implementation: 
-
-  1.	Communication: Report out an overview and detailed analysis of the findings, communicate from:
-     
-  - Pertinent front-line employees to the C-suite, with each persona having a right-for-role messaging
-
-  - Dealer to dealer - especially sister stores or partners - to share lessons learned and best practices
-
-  2.	Integration: Work in conjunction with the technical team to integrate the predictive model into dealership environments; train the workers on usage and gather continual feedback
-
-  3.	Monitoring and Updates: Set up an ongoing monitoring process to evaluate the accuracy of the model and make updates as necessary
-
-  4.	Continued Exploration: Explore additional variables and features that could influence prices and assess their potential inclusion in the model
+By strategically addressing these key variables, the bank can optimize its approach to attract and retain customers for term deposits.
